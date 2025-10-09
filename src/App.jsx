@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import emailjs from '@emailjs/browser';
 import {
   ChevronRight,
   Download,
@@ -44,30 +45,37 @@ const Header = () => {
           {/* Logo - Responsive sizing with clamp() and improved accessibility */}
           <a
             href="#home"
-            className="logo transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50 rounded-md px-2 py-1"
+            className="logo transition-all duration-300 hover:scale-105  rounded-md px-2 py-1 no-underline visited:text-black hover:text-black active:text-black"
             style={{
               fontSize: "clamp(1.75rem, 5vw, 3rem)", // Fluid typography: 28px to 48px
-              lineHeight: "1.2",
+              lineHeight: "0.9",
             }}
             aria-label="Muskan Tomar Portfolio Home"
+            text-black
           >
             MT
           </a>
 
-          {/* Desktop Navigation - Enhanced responsive spacing */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-10">
+          {/* Desktop Navigation - Tighter spacing */}
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="!text-black hover:!text-gray-600 transition-colors duration-200 font-medium relative group focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50 rounded-md px-3 py-2"
+                className="nav-link  text-black hover:text-gray-600 active:text-gray-600 transition-colors duration-200 font-medium relative group focus:outline-none px-3 py-2"
                 style={{
                   fontSize: "clamp(1rem, 2.2vw, 1.125rem)", // Fluid: 16px to 18px
                 }}
                 aria-label={`Navigate to ${item.label} section`}
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                <span 
+                  className="absolute bottom-0 left-3 w-0 bg-black transition-all duration-300 group-hover:w-[calc(100%-1.5rem)] group-active:w-[calc(100%-1.5rem)]"
+                  style={{
+                    height: '0.5px',
+                    borderBottom: '0.5px solid black'
+                  }}
+                ></span>
               </a>
             ))}
             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-black rounded-full flex items-center justify-center ml-4 lg:ml-6 hover:scale-110 transition-transform cursor-pointer">
@@ -75,9 +83,10 @@ const Header = () => {
             </div>
           </div>
 
+
           {/* Mobile Menu Button - Improved touch target */}
           <button
-            className="md:hidden z-60 text-black p-2 hover:bg-black/5 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50"
+            className="md:hidden z-60 text-black p-2 hover:bg-black hover:text-white rounded-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={
               isMenuOpen ? "Close navigation menu" : "Open navigation menu"
@@ -115,7 +124,7 @@ const Header = () => {
 
       {/* Scrolling Text Bands */}
       {/* Scrolling Text Bands - Responsive */}
-      <div className="absolute top-[60px] sm:top-[80px] lg:top-[105px] left-[-5%] w-[200%] h-[30px] sm:h-[35px] lg:h-[40px] bg-black -rotate-[6.0deg] z-1 flex items-center overflow-hidden">
+      <div className="absolute top-[60px] sm:top-[80px] lg:top-[95px] left-[-4%] w-[200%] h-[30px] sm:h-[35px] lg:h-[35px] bg-black -rotate-[4.8deg] z-1 flex items-center overflow-hidden">
         <div className="flex animate-scroll-text">
           <div
             className="text-white whitespace-nowrap flex-shrink-0"
@@ -130,7 +139,7 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="absolute top-[120px] left-[-1%] w-[102%] h-[40px] bg-black rotate-[1.5deg] z-10 flex items-center overflow-hidden">
+      <div className="absolute top-[120px] left-[-1%] w-[102%] h-[30px] lg:h-[35px] bg-black rotate-[1.5deg] z-10 flex items-center overflow-hidden">
         {" "}
         <div className="flex animate-scroll-text-reverse">
           <div className="text-white text-xl  whitespace-nowrap flex-shrink-0">
@@ -159,21 +168,22 @@ const Hero = () => {
       className="min-h-screen w-full pt-32 pb-16 px-4 sm:px-6 lg:px-12 bg-[#FFF9E6] relative overflow-hidden"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-20 items-center">
           {/* Left Content */}
-          <div className="relative flex min-h-screen flex-col items-center justify-center bg-[#FDF6E9] p-4 text-center">
-            <div className="max-w-5xl">
-              <h1 className="font-5px leading-tight tracking-tight text-black text-[30px] sm:text-[40px] md:text-[50px] lg:text-[55px]">
+          <div className="relative flex min-h-[60vh] sm:min-h-[70vh] w-full flex-col items-center justify-center bg-[#FFF9E6] p-6 sm:p-8 lg:p-12 text-center">
+            <div className="max-w-7xl w-full">
+              <h1 className="font-light leading-tight tracking-tight text-black text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px]">
                 <span className="block">
                   Building cross-platform brilliance
                 </span>
                 <span className="block">for modern brands</span>
               </h1>
 
-              {/* Arrow positioned near profile text*/}
-              <div className="absolute top-[26%] left-120 lg:-right-9 w-12 h-12 lg:w-9 lg:h-9 bg-black rounded-full flex items-center justify-center text-white text-xl z-40">
-                <ArrowDownLeft size={20} />
+              {/* Arrow positioned near profile text */}
+              <div className="absolute top-[15%] right-2 sm:right-8 lg:right-10 w-7 h-7 sm:w-10 sm:h-10 lg:w-9 lg:h-9 bg-black rounded-full flex items-center justify-center text-white text-xl z-40">
+                <ArrowDownLeft size={12} className="sm:size-4 lg:size-5" />
               </div>
+
               <button className="mt-8 rounded-lg border-2 border-black bg-transparent px-9 py-2 text-lg font-normal text-black transition-colors duration-300 ease-in-out hover:bg-black hover:text-white">
                 Let's Start a Project Together
               </button>
@@ -181,35 +191,45 @@ const Hero = () => {
           </div>
 
           {/* Right Content - Profile Image and Text */}
-          <div className="relative h-90 lg:h-[600px] flex items-center justify-end overflow-hidden z-20">
+          <div className="relative h-[350px] sm:h-[500px] lg:h-[600px] flex items-center justify-center lg:justify-end overflow-hidden z-20">
             {/* Hero Image Wrapper */}
-            <div className="relative mr-5 lg:mr-15">
+            <div className="relative mr-0 sm:mr-5 lg:mr-15">
               {/* Profile Picture */}
-              <div className="relative w-[200px] h-[200px] lg:w-[320px] lg:h-[320px] rounded-[50%] bg-white/50 backdrop-blur-sm z-20 overflow-hidden -translate-x-8 lg:-translate-x-16">
-                <img
-                  src="/assets/img1.png"
-                  alt="Muskan Tomar"
-                  className="w-full h-full object-cover top-263px object-center scale-200 translate-y-[-15%]"
-                />
-              </div>
+              <img
+                src="/assets/Frame 5.png"
+                alt="Muskan Tomar"
+                className="relative w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[320px] lg:h-[320px] object-cover z-20 -translate-x-6 sm:-translate-x-12 lg:-translate-x-20"
+              />
+
+              {/* Overflowing top image - Frame 6 */}
+              <img
+                src="/assets/Frame 6.png"
+                alt="Muskan Frame 6"
+                className="absolute w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] lg:w-[220px] lg:h-[220px] object-cover z-30 -translate-x-1 sm:-translate-x-3 lg:-translate-x-8 -top-10 sm:-top-16 lg:-top-16"
+                style={{
+                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)'
+                }}
+              />
 
               {/* Colorful MUSKA Background Text */}
-              <div className="absolute top-1/2 -right-32 lg:-right-40 transform -translate-y-1/2 z-10 flex flex-col pointer-events-none">
+              <div className="absolute top-1/2 -right-12 sm:-right-24 lg:-right-40 transform -translate-y-1/2 z-10 flex flex-col pointer-events-none overflow-visible">
                 {[
                   { text: "MUSKAN", color: "#808080" },
                   { text: "MUSKAN", color: "#4285F4" },
                   { text: "MUSKAN", color: "#EA4335" },
                   { text: "MUSKAN", color: "#FBBC04" },
                   { text: "MUSKAN", color: "#34A853" },
+                  { text: "MUSKAN", color: "#000000" },
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className="text-6xl lg:text-8xl xl:text-9xl font-black whitespace-nowrap leading-none opacity-80"
+                    className="text-xl sm:text-4xl lg:text-8xl xl:text-9xl font-semibold font-black whitespace-nowrap leading-none opacity-50 sm:opacity-70 lg:opacity-80 overflow-visible"
                     style={{
                       color: item.color,
                       fontWeight: 900,
-                      letterSpacing: "-4px",
-                      lineHeight: "0.8",
+                      letterSpacing: "-1px",
+                      lineHeight: "0.9",
                     }}
                   >
                     {item.text}
@@ -222,13 +242,13 @@ const Hero = () => {
       </div>
 
       {/* Footer Text */}
-      <div className="absolute bottom-9 left-0 w-full z-30 overflow-hidden">
-        <div className="text-4xl lg:text-7xl xl:text-5xl font-bold text-black tracking-wide px-7 lg:px-12">
+      <div className="absolute bottom-25 -left-30 w-full z-30 overflow-hidden">
+        <div className="text-4xl lg:text-8xl xl:text-5xl font-bold text-black tracking-wide px-7 lg:px-12 relative">
           MUSKAN TOMAR
-          <sup className="text-2xl lg:text-4xl relative top-[-0.3em] ml-1">
+          <sup className="text-2xl font-normal lg:text-4xl relative -top-14 -left-1 z-50 overflow-visible">
             ©
           </sup>
-          - MUSKAN
+          -
           <sup className="text-2xl lg:text-4xl relative top-[-0.3em] ml-1"></sup>
         </div>
       </div>
@@ -262,75 +282,78 @@ const About = () => {
     >
       <div className="max-w-7xl mx-auto">
         {/* Bio Section */}
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-20 items-center mb-16">
+        <div className="grid lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-20 items-center mb-12 sm:mb-16">
           {/* Left Side: Image with effects (takes 2 of 5 columns) */}
-          <div className="lg:col-span-2 relative flex items-center h-[500px] lg:h-[600px] -ml-16 lg:-ml-45">
+          <div className="lg:col-span-2 relative flex items-center h-[280px] sm:h-[400px] lg:h-[600px] -ml-2 sm:-ml-8 lg:-ml-45">
             {" "}
             {/* Background Vector Image - Increased Size */}{" "}
             <img
               src="/assets/Vector.png"
               alt="Gold background shape"
-              className="absolute w-full max-w-1xl lg:max-w-1xl h-554px object-contain z-10 -left-4 lg:left-15 transform scale-80"
+              className="absolute w-full max-w-xs sm:max-w-lg lg:max-w-2xl h-auto object-contain z-10 -left-2 sm:-left-4 lg:left-18 transform scale-50 sm:scale-70 lg:scale-80"
             />{" "}
             {/* Blur circle container */}{" "}
-            <div className="absolute w-[200px] h-[200px] lg:w-[260px] lg:h-[260px] rounded-[50%] bg-white/50 backdrop-blur-sm z-20 left-24 lg:left-35 overflow-hidden">
-              {" "}
-              <img
-                src="/assets/img2.png"
-                alt="Muskan"
-                className="w-full h-full object-cover object-[center_top] z-10"
-              />{" "}
-            </div>{" "}
+            <div
+              className="absolute w-[160px] h-[160px] sm:w-[280px] sm:h-[280px] lg:w-[320px] lg:h-[320px] rounded-[50%] z-20 left-6 sm:left-16 lg:left-43 overflow-hidden"
+              style={{
+                background: "#FFFFFF80",
+                backdropFilter: "blur(1.5px)",
+                border: "1px solid #FFFFFF30",
+              }}
+            ></div>{" "}
             {/* Overflowing bottom image */}{" "}
             <img
               src="/assets/img2.png"
               alt="Muskan Extended"
-              className="absolute w-[350px] h-[350px] lg:w-[380px] lg:h-[380px] object-cover z-30 left-24 lg:left-32 bottom-0 scale-[1.25] -translate-y-[40%] overflow-hidden "
+              className="absolute w-[140px] h-[140px] sm:w-[250px] sm:h-[250px] lg:w-[350px] lg:h-[350px] object-cover z-30 left-6 sm:left-16 lg:left-40 bottom-6 sm:bottom-12 lg:bottom-14 scale-[1.25] -translate-y-[40%] overflow-hidden clip-bottom-half-circle"
+              style={{
+                borderRadius: "50%",
+              }}
             />{" "}
           </div>
 
           <div className="lg:col-span-3 flex flex-col justify-center">
-            <p className="text-2xl lg:text-[1.5rem] font-light leading-snug lg:leading-tight text-black mb-10">
+            <p className="text-lg sm:text-xl lg:text-[1.5rem] font-light leading-snug lg:leading-tight text-black mb-8 sm:mb-10">
               I am a{" "}
-              <span className="font-medium lg:text-[2.1rem] border-b-4 border-black/60">
+              <span className="font-medium text-lg sm:text-xl lg:text-[2.1rem] border-b-1 border-black/60">
                 Flutter Developer
               </span>{" "}
               with{" "}
-              <span className="font-medium lg:text-[2.1rem] border-b-4 border-black/60">
+              <span className="font-medium text-lg sm:text-xl lg:text-[2.1rem] border-b-1 border-black/60">
                 6+ years
               </span>{" "}
               of experience in{" "}
-              <span className="font-medium lg:text-[2.1rem] border-b-4 border-black/60">
+              <span className="font-medium text-lg sm:text-xl lg:text-[2.1rem] border-b-1 border-black/60">
                 building cross-platform
               </span>{" "}
               mobile apps.{" "}
-              <span className="font-medium lg:text-[2.1rem] border-b-4 border-black/60">
+              <span className="font-medium text-lg sm:text-xl lg:text-[2.1rem] border-b-1 border-black/60">
                 Skilled in Flutter, Node.js, and React Native
               </span>
               , I craft scalable, high-performance solutions with clean code,
               engaging design, and{" "}
-              <span className="font-medium lg:text-[2.1rem] border-b-4 border-black/60">
+              <span className="font-medium text-lg sm:text-xl lg:text-[2.1rem] border-b-1 border-black/60">
                 impactful user experiences
               </span>
               .
             </p>
-            <button className="bg-transparent border-2 border-black text-black px-8 py-3 rounded-lg text-xl font-medium hover:bg-black hover:text-white transition-colors duration-300 self-center">
+            <button className="bg-transparent border-2 border-black text-black px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-lg sm:text-xl font-medium hover:bg-black hover:text-white transition-colors duration-300 self-center">
               View My Projects
             </button>
           </div>
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="text-center md:border-r md:border-black md:last:border-r-0 pr-4"
+              className="text-center sm:border-r sm:border-black sm:last:border-r-0 pr-0 sm:pr-4"
             >
-              <div className="text-5xl lg:text-7xl font-bold text-black mb-2">
+              <div className="text-3xl sm:text-4xl lg:text-7xl font-bold text-black mb-2">
                 {stat.number}
               </div>
-              <div className="text-2xl lg:text-3xl font-light text-black whitespace-pre-line">
+              <div className="text-lg sm:text-xl lg:text-3xl font-light text-black whitespace-pre-line">
                 {stat.label}
               </div>
             </div>
@@ -341,7 +364,7 @@ const About = () => {
         <div className="mt-16">
           {" "}
           {/* Add top margin to space it from the stats section */}
-          <div className="max-w-5xl mx-auto border border-black rounded-xl p-4 sm:p-6">
+          <div className="max-w-5xl mx-auto border-2 border-black rounded-xl p-4 sm:p-6">
             <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-4 sm:gap-x-8">
               {techLogos.map((tech, index) => {
                 const logoFiles = {
@@ -416,9 +439,10 @@ const Services = () => {
     <section id="services" className="py-16 px-6 lg:px-12 bg-[#FFF9E6]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex justify-between items-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-light text-black">
-            The Services we Offer <span className="text-2xl">©</span>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-light text-black mb-4 sm:mb-0">
+            The Services we Offer{" "}
+            <span className="text-lg sm:text-xl relative -top-4 sm:-top-7 -left-3">©</span>
           </h2>
           <div className="hidden md:flex items-center space-x-4 text-2xl font-light cursor-pointer hover:opacity-70 transition-opacity">
             <span className="text-black">View All</span>
@@ -429,7 +453,7 @@ const Services = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-12">
           {services.map((service, index) => (
             <div
               key={index}
@@ -472,10 +496,11 @@ const Portfolio = () => {
       description:
         "Apptivo CRM's website presents a unified, customizable platform with intuitive design, enterprise features, and seamless integrations—empowering businesses to manage leads, workflows, and customer relationships efficiently",
       images: [
-        "/assets/apptivo-1.jpg", // Replace with actual screenshots
-        "/assets/apptivo-2.jpg",
-        "/assets/apptivo-3.jpg",
-        "/assets/apptivo-4.jpg",
+        "/assets/projects/apptivo1.png",
+        "/assets/projects/apptivo4.png",
+        "/assets/projects/apptivo3.png",
+        "/assets/projects/apptivo2.png",
+        "/assets/projects/apptivo5.png",
       ],
     },
     {
@@ -483,10 +508,11 @@ const Portfolio = () => {
       description:
         "FREECRM offers powerful, free CRM tools for sales, marketing, and support—boosting productivity, lead conversion, and customer satisfaction with intuitive dashboards, automation, and mobile access",
       images: [
-        "/assets/freecrm-1.jpg",
-        "/assets/freecrm-2.jpg",
-        "/assets/freecrm-3.jpg",
-        "/assets/freecrm-4.jpg",
+        "/assets/projects/freecrm1.png",
+        "/assets/projects/freecrm2.png",
+        "/assets/projects/freecrm3.png",
+        "/assets/projects/freecrm4.png",
+        "/assets/projects/freecrm5.png",
       ],
     },
     {
@@ -494,10 +520,11 @@ const Portfolio = () => {
       description:
         "Pipedrive's website showcases a powerful, AI-driven CRM platform that streamlines sales pipelines, automates workflows, and boosts conversions with intuitive design, real-time insights, and smart integrations",
       images: [
-        "/assets/pipedrive-1.jpg",
-        "/assets/pipedrive-2.jpg",
-        "/assets/pipedrive-3.jpg",
-        "/assets/pipedrive-4.jpg",
+        "/assets/projects/pipedrive1.png",
+        "/assets/projects/pipedrive2.png",
+        "/assets/projects/pipedrive3.png",
+        "/assets/projects/pipedrive4.png",
+        "/assets/projects/pipedrive5.png",
       ],
     },
     {
@@ -505,10 +532,11 @@ const Portfolio = () => {
       description:
         "Timbuk Toys' website showcases a vibrant, community-focused toy store offering curated brands, playful experiences, and free gift wrapping—celebrating learning through play for all ages",
       images: [
-        "/assets/timbuk-1.jpg",
-        "/assets/timbuk-2.jpg",
-        "/assets/timbuk-3.jpg",
-        "/assets/timbuk-4.jpg",
+        "/assets/projects/toys1.png",
+        "/assets/projects/toys2.png",
+        "/assets/projects/toys3.png",
+        "/assets/projects/toys4.png",
+        "/assets/projects/toys5.png",
       ],
       hidden: true,
     },
@@ -521,27 +549,28 @@ const Portfolio = () => {
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex justify-between items-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-light text-black">
-            Portfolio Projects <span className="text-2xl">©</span>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-light text-black mb-4 sm:mb-0">
+            Portfolio Projects{" "}
+            <span className="text-lg sm:text-xl relative -top-4 sm:-top-7 -left-3">©</span>
           </h2>
-          <div className="hidden md:flex items-center space-x-4 text-2xl font-light cursor-pointer hover:opacity-70 transition-opacity">
+          <div className="hidden md:flex items-center space-x-4 text-xl lg:text-2xl font-light cursor-pointer hover:opacity-70 transition-opacity">
             <span>View All</span>
-            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white">
-              <ArrowDownLeft size={20} />
+            <div className="w-10 h-10 lg:w-12 lg:h-12 bg-black rounded-full flex items-center justify-center text-white">
+              <ArrowDownLeft size={16} className="lg:size-5" />
             </div>
           </div>
         </div>
 
         {/* Portfolio Subtitle */}
-        <p className="text-2xl lg:text-3xl font-light text-black mb-16 max-w-5xl">
+        <p className="text-lg sm:text-xl lg:text-3xl font-light text-black mb-12 sm:mb-16 max-w-5xl">
           Showcasing a collection of my best live Flutter projects, highlighting
           innovative design, seamless functionality, and real-world impact
           across multiple platforms and industries.
         </p>
 
         {/* Projects */}
-        <div className="space-y-16">
+        <div className="space-y-12 sm:space-y-16">
           {projects.map((project, index) => (
             <div
               key={index}
@@ -549,12 +578,20 @@ const Portfolio = () => {
                 project.hidden && !showMore ? "hidden" : "block"
               } transition-all duration-500`}
             >
+              {/* Project Title - Outside Container */}
+              <div className="text-left mb-6 sm:mb-8">
+                <h3 className="text-2xl sm:text-3xl lg:text-5xl font-light text-black mb-4">
+                  {project.title}{" "}
+                  <span className="text-lg sm:text-xl relative -top-4 sm:-top-7 -left-3">©</span>
+                </h3>
+              </div>
+
               {/* Project Card */}
-              <div className="bg-[#FFE8A8] rounded-[4rem] p-8 lg:p-12 relative overflow-hidden min-h-[400px] lg:min-h-[500px]">
+              <div className="bg-[#FFE8A8] rounded-[2rem] sm:rounded-[3rem] lg:rounded-[4rem] p-4 sm:p-6 lg:p-12 relative overflow-hidden min-h-[250px] sm:min-h-[350px] lg:min-h-[500px]">
                 {/* Mac mockup background */}
                 <div
-                  className={`absolute w-96 h-96 lg:w-[600px] lg:h-[600px] opacity-10 
-                    ${index % 2 === 0 ? "left-0 -top-16" : "right-0 -top-16"} 
+                  className={`absolute w-48 h-48 sm:w-72 sm:h-72 lg:w-[600px] lg:h-[600px] opacity-4 sm:opacity-10
+                    ${index % 2 === 0 ? "left-0 -top-8 sm:-top-16" : "right-0 -top-8 sm:-top-16"} 
                     transform rotate-12`}
                 >
                   {/* Mac outline SVG */}
@@ -596,42 +633,819 @@ const Portfolio = () => {
                 </div>
 
                 {/* Screenshots */}
-                <div
-                  className={`absolute top-8 ${
-                    index % 2 === 0 ? "right-8" : "left-8"
-                  } grid grid-cols-2 gap-4 z-10`}
-                >
-                  {project.images.slice(0, 4).map((image, imgIndex) => (
-                    <div
-                      key={imgIndex}
-                      className="w-32 h-20 lg:w-40 lg:h-24 bg-white rounded-lg shadow-lg overflow-hidden"
-                    >
-                      {/* Replace with actual project screenshots */}
-                      <div className="w-full h-full bg-gray-200 flex items-center justify-center text-xs text-gray-500">
-                        Screenshot {imgIndex + 1}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <div className="absolute inset-0 z-10">
+                  {project.images.slice(0, 5).map((image, imgIndex) => {
+                    // Special positioning for freecrm1.png (first image in Freecrm project)
+                    if (
+                      imgIndex === 0 &&
+                      image.includes("freecrm1.png") &&
+                      project.title === "Freecrm"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute overflow-hidden"
+                          style={{
+                            width: "500.3997075721653px",
+                            height: "509.6334101613191px",
+                            top: "30px",
+                            left: "655px",
+                            transform: "rotate(14.15deg)",
+                            opacity: 1,
+                            zIndex: 1,
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
 
-                {/* Project Title */}
-                <div className="relative z-20">
-                  <h3 className="text-4xl lg:text-5xl font-light text-black mb-4">
-                    {project.title} <span className="text-2xl">©</span>
-                  </h3>
+                    // Special positioning for freecrm2.png (second image in Freecrm project)
+                    if (
+                      imgIndex === 1 &&
+                      image.includes("freecrm2.png") &&
+                      project.title === "Freecrm"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "141px",
+                            top: "141px",
+                            left: "90px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for freecrm3.png (third image in Freecrm project)
+                    if (
+                      imgIndex === 2 &&
+                      image.includes("freecrm3.png") &&
+                      project.title === "Freecrm"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "141px",
+                            top: "80px",
+                            left: "390px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for freecrm4.png (fourth image in Freecrm project)
+                    if (
+                      imgIndex === 3 &&
+                      image.includes("freecrm4.png") &&
+                      project.title === "Freecrm"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "141px",
+                            top: "300px",
+                            left: "90px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for freecrm5.png (fifth image in Freecrm project)
+                    if (
+                      imgIndex === 4 &&
+                      image.includes("freecrm5.png") &&
+                      project.title === "Freecrm"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "141px",
+                            top: "240px",
+                            left: "390px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for pipedrive1.png (first image in Pipedrive project)
+                    if (
+                      imgIndex === 0 &&
+                      image.includes("pipedrive1.png") &&
+                      project.title === "Pipedrive"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute overflow-hidden"
+                          style={{
+                            width: "550px",
+                            height: "550px",
+                            top: "-16px",
+                            left: "-5px",
+                            transform: "rotate(15.15deg)",
+                            opacity: 1,
+                            zIndex: 1,
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for pipedrive2.png (second image in Pipedrive project)
+                    if (
+                      imgIndex === 1 &&
+                      image.includes("pipedrive2.png") &&
+                      project.title === "Pipedrive"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "80px",
+                            left: "520px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for pipedrive3.png (third image in Pipedrive project)
+                    if (
+                      imgIndex === 2 &&
+                      image.includes("pipedrive3.png") &&
+                      project.title === "Pipedrive"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "140px",
+                            left: "820px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for pipedrive4.png (fourth image in Pipedrive project)
+                    if (
+                      imgIndex === 3 &&
+                      image.includes("pipedrive4.png") &&
+                      project.title === "Pipedrive"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "253px",
+                            left: "520px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for pipedrive5.png (fifth image in Pipedrive project)
+                    if (
+                      imgIndex === 4 &&
+                      image.includes("pipedrive5.png") &&
+                      project.title === "Pipedrive"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "309px",
+                            left: "820px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for toys1.png (first image in Timbuk Toys project)
+                    if (
+                      imgIndex === 0 &&
+                      image.includes("toys1.png") &&
+                      project.title === "Timbuk Toys"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute overflow-hidden"
+                          style={{
+                            width: "500.4000127479408px",
+                            height: "553.8525875186264px",
+                            top: "-11px",
+                            left: "643px",
+                            transform: "rotate(14.15deg)",
+                            opacity: 1,
+                            zIndex: 1,
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for toys2.png (second image in Timbuk Toys project)
+                    if (
+                      imgIndex === 1 &&
+                      image.includes("toys2.png") &&
+                      project.title === "Timbuk Toys"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "95px",
+                            left: "361px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for toys3.png (third image in Timbuk Toys project)
+                    if (
+                      imgIndex === 2 &&
+                      image.includes("toys3.png") &&
+                      project.title === "Timbuk Toys"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "152px",
+                            left: "60px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for toys4.png (fourth image in Timbuk Toys project)
+                    if (
+                      imgIndex === 3 &&
+                      image.includes("toys4.png") &&
+                      project.title === "Timbuk Toys"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "320px",
+                            left: "60px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for toys5.png (fifth image in Timbuk Toys project)
+                    if (
+                      imgIndex === 4 &&
+                      image.includes("toys5.png") &&
+                      project.title === "Timbuk Toys"
+                    ) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "260px",
+                            left: "361px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for apptivo1.png (first image)
+                    if (imgIndex === 0 && image.includes("apptivo1.png")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute overflow-hidden"
+                          style={{
+                            width: "550px",
+                            height: "550px",
+                            top: "-15px",
+                            left: "12px",
+                            transform: "rotate(15.15deg)",
+                            opacity: 1,
+                            zIndex: 1,
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 2}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for apptivo4.png (second image)
+                    if (imgIndex === 1 && image.includes("apptivo4.png")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "265px",
+                            left: "540px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for apptivo3.png (third image)
+                    if (imgIndex === 2 && image.includes("apptivo3.png")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "90px",
+                            left: "540px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for apptivo2.png (fourth image)
+                    if (imgIndex === 3 && image.includes("apptivo2.png")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "150px",
+                            left: "840px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for apptivo5.png (fifth image)
+                    if (imgIndex === 4 && image.includes("apptivo5.png")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "280px",
+                            height: "151px",
+                            top: "325px",
+                            left: "840px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Grid positioning for other images
+                    const gridPositions = [
+                      { top: "40px", right: "40px" },
+                      { top: "40px", right: "280px" },
+                      { top: "200px", right: "40px" },
+                      { top: "200px", right: "280px" },
+                    ];
+
+                    const position =
+                      gridPositions[imgIndex - 1] || gridPositions[0];
+
+                    return (
+                      <div
+                        key={imgIndex}
+                        className="absolute w-32 h-20 lg:w-40 lg:h-24 bg-white rounded-lg shadow-lg overflow-hidden"
+                        style={{
+                          top: position.top,
+                          right: position.right,
+                        }}
+                      >
+                        <img
+                          src={image}
+                          alt={`${project.title} screenshot ${imgIndex + 1}`}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.target.style.display = "none";
+                            e.target.nextSibling.style.display = "flex";
+                          }}
+                        />
+                        <div
+                          className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                          style={{ display: "none" }}
+                        >
+                          Screenshot {imgIndex + 1}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
               {/* Project Description */}
-              <div className="text-center mt-8 mb-8">
-                <p className="text-xl lg:text-2xl font-light text-black max-w-5xl mx-auto leading-relaxed">
+              <div className="text-center mt-6 sm:mt-8 mb-6 sm:mb-8 px-2">
+                <p className="text-base sm:text-lg lg:text-2xl font-light text-black max-w-5xl mx-auto leading-relaxed">
                   {project.description}
                 </p>
               </div>
 
               {/* Visit Site Button */}
               <div className="text-center">
-                <button className="bg-transparent border-2 border-black text-black px-8 py-4 rounded-lg text-xl font-medium hover:bg-black hover:text-white transition-all duration-300">
+                <button className="bg-transparent border-2 border-black text-black px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg text-base sm:text-lg lg:text-xl font-medium hover:bg-black hover:text-white transition-all duration-300">
                   Visit Site
                 </button>
               </div>
@@ -640,14 +1454,14 @@ const Portfolio = () => {
         </div>
 
         {/* Load More Section */}
-        <div className="text-center mt-16">
-          <p className="text-4xl lg:text-5xl font-light text-black mb-8">
+        <div className="text-center mt-12 sm:mt-16">
+          <p className="text-xl sm:text-2xl lg:text-5xl font-light text-black mb-6 sm:mb-8 text-left px-2">
             Curious about more designs? Load more projects.{" "}
-            <span className="text-2xl">©</span>
+            <span className="text-base sm:text-lg lg:text-xl relative -top-3 sm:-top-4 lg:-top-8 right-2 sm:right-4">©</span>
           </p>
           <button
             onClick={() => setShowMore(!showMore)}
-            className="bg-transparent border-2 border-black text-black px-8 py-4 rounded-lg text-xl font-medium hover:bg-black hover:text-white transition-all duration-300"
+            className="bg-transparent border-2 border-black text-black px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg text-base sm:text-lg lg:text-xl font-medium hover:bg-black hover:text-white transition-all duration-300"
           >
             {showMore ? "Show Less" : "Load More"}
           </button>
@@ -664,13 +1478,68 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-    alert("Thank you for your message! I will get back to you soon.");
-    setFormData({ name: "", email: "", message: "" });
+    
+    // Validate form
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      alert('Please fill in all fields');
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitStatus('');
+
+    try {
+      // Initialize EmailJS first
+      emailjs.init('-UuRv-reuumlrvR05');
+      
+      // Simple template parameters matching standard EmailJS template
+      const templateParams = {
+        user_name: formData.name,
+        user_email: formData.email,
+        message: formData.message,
+      };
+
+      console.log('Attempting to send email...');
+      console.log('Template params:', templateParams);
+      
+      // Send email using sendForm method which is more reliable
+      const result = await emailjs.send(
+        'service_grn9yuf', // service_id
+        'template_uom4obj', // template_id
+        templateParams
+      );
+      
+      console.log('EmailJS Success:', result);
+      setSubmitStatus('success');
+      alert("Thank you for your message! I will get back to you soon.");
+      setFormData({ name: "", email: "", message: "" });
+      
+    } catch (error) {
+      console.error('EmailJS Full Error:', error);
+      setSubmitStatus('error');
+      
+      let errorMessage = 'Failed to send message. ';
+      
+      if (error.status === 400) {
+        errorMessage += 'Please check if your EmailJS service and template are correctly configured.';
+      } else if (error.status === 401) {
+        errorMessage += 'Authentication failed. Check your public key.';
+      } else if (error.status === 404) {
+        errorMessage += 'Service or template not found.';
+      } else {
+        errorMessage += 'Please try again later.';
+      }
+      
+      alert(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -689,13 +1558,14 @@ const Contact = () => {
             Join Hands in Collaboration
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-6xl text-black">
+          <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6 max-w-6xl text-black">
             <input
               type="text"
               name="name"
               placeholder="Enter Your Name"
               value={formData.name}
               onChange={handleChange}
+              required
               className="bg-white border-none rounded-lg p-6 text-xl font-light w-full focus:outline-none focus:ring-2 focus:ring-black"
             />
             <input
@@ -704,6 +1574,7 @@ const Contact = () => {
               placeholder="Enter Your Email"
               value={formData.email}
               onChange={handleChange}
+              required
               className="bg-white border-none rounded-lg p-6 text-xl font-light w-full focus:outline-none focus:ring-2 focus:ring-black"
             />
             <div className="md:col-span-2 relative">
@@ -713,16 +1584,22 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 rows="4"
+                required
                 className="bg-white border-none rounded-lg p-6 text-xl font-light w-full resize-none focus:outline-none focus:ring-2 focus:ring-black"
               ></textarea>
               <button
-                onClick={handleSubmit}
-                className="absolute bottom-6 right-6 w-8 h-8 flex items-center justify-center transform rotate-90 hover:scale-110 transition-transform"
+                type="submit"
+                disabled={isSubmitting}
+                className={`absolute bottom-6 right-6 w-8 h-8 flex items-center justify-center transform rotate-2 hover:bg-black hover:scale-110 rounded-full transition-all duration-300 group ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
-                <Send size={20} className="text-black" />
+                {isSubmitting ? (
+                  <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <Send size={20} className="text-black group-hover:text-white" />
+                )}
               </button>
             </div>
-          </div>
+          </form>
         </div>
 
         {/* Assets Section */}
@@ -749,21 +1626,30 @@ const Contact = () => {
 // Footer Component
 const Footer = () => {
   return (
-    <footer className="py-16 px-6 lg:px-12 bg-[#FFF9E6] border-t border-black/20">
+    <footer className="py-16 px-6 lg:px-12 bg-[#FFF9E6]">
       <div className="max-w-7xl mx-auto">
         {/* Footer Content */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <div>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16 w-full">
+          {/* Phone */}
+          <div className="flex-0  text-left">
             <h3 className="text-2xl font-medium text-black mb-4">Phone</h3>
-            <p className="text-xl font-light text-gray-600">+91 99999 99999</p>
+            <p className="flex-0 text-xl font-light text-gray-600">(+91) 9999999999</p>
           </div>
-          <div>
-            <h3 className="text-2xl font-medium text-black mb-4">Email</h3>
+
+          {/* Email */}
+          <div className="flex-0  text-center">
+            <h3 className="text-2xl font-medium text-black text-left mb-4">
+              Email
+            </h3>
             <p className="text-xl font-light text-gray-600">info@muskan.com</p>
           </div>
-          <div>
-            <h3 className="text-2xl font-medium text-black mb-4">Socials</h3>
-            <div className="flex space-x-4">
+
+          {/* Socials */}
+          <div className="flex-0   text-right">
+            <h3 className="text-2xl font-medium text-black  text-left mb-4">
+              Socials
+            </h3>
+            <div className="flex justify-end space-x-4 ">
               {/* Social Icons */}
               <div className="w-10 h-10 bg-[#FFE8A8] rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all duration-200 cursor-pointer">
                 <span className="text-sm font-bold">X</span>
@@ -777,6 +1663,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
+        {/* Horizontal line above copyright */}
+        <div className="border-t border-black/20 mb-6"></div>
 
         {/* Copyright */}
         <div className="text-center">
@@ -813,16 +1702,26 @@ const App = () => {
       {" "}
       {/* This is good, but we'll make it more robust */}
       <style>{`
-        /* 1. Import the 'Kablammo' Google Font */
+        /* Import Inter Google Font */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Kablammo&display=swap');
         
-        body {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+        /* Apply Inter font globally with higher specificity */
+        html, body, div, span, p, h1, h2, h3, h4, h5, h6, button, input, textarea, a {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif !important;
         }
 
-        /* 2. Add the provided CSS for the .logo class */
+        body {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif !important;
+        }
+
+        /* Override Tailwind's default font */
+        .font-sans {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif !important;
+        }
+
+        /* Keep Kablammo only for the logo */
         .logo {
-            font-family: 'Kablammo', cursive;
+            font-family: 'Kablammo', cursive !important;
             font-weight: 400;
             color: black;
             text-decoration: none;
@@ -859,18 +1758,6 @@ const App = () => {
         * {
           box-sizing: border-box;
         }
-
-        /* You can now remove your debugging outlines */
-        /*
-        * {
-          outline: 1px solid red !important;
-        }
-
-        *:hover {
-          outline: 2px solid blue !important;
-          background: rgba(255, 0, 0, 0.1) !important;
-        }
-        */
       `}</style>
       <Header />
       <Hero />
