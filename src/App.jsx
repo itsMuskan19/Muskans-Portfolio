@@ -224,7 +224,7 @@ const Hero = () => {
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className="text-xl sm:text-4xl lg:text-8xl xl:text-9xl font-semibold font-black whitespace-nowrap leading-none opacity-50 sm:opacity-70 lg:opacity-80 overflow-visible"
+                    className="text-xl sm:text-4xl lg:text-8xl xl:text-8xl font-semibold font-black whitespace-nowrap leading-none opacity-50 sm:opacity-70 lg:opacity-80 overflow-visible"
                     style={{
                       color: item.color,
                       fontWeight: 900,
@@ -243,7 +243,7 @@ const Hero = () => {
 
       {/* Footer Text */}
       <div className="absolute bottom-25 -left-30 w-full z-30 overflow-hidden">
-        <div className="text-4xl lg:text-8xl xl:text-5xl font-bold text-black tracking-wide px-7 lg:px-12 relative">
+        <div className="text-4xl lg:text-8xl xl:text-8xl font-bold text-black tracking-wide px-7 lg:px-12 relative">
           MUSKAN TOMAR
           <sup className="text-2xl font-normal lg:text-4xl relative -top-14 -left-1 z-50 overflow-visible">
             ©

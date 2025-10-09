@@ -38,6 +38,10 @@ a {
 
 body {
     margin: 0;
+    /* Vendor-prefixed fallbacks for broader browser support */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     place-items: center;
     min-width: 320px;
@@ -58,6 +62,8 @@ h1 {
 }
 @layer utilities {
   .clip-bottom-half-circle {
-    clip-path: ellipse(50% 60% at 50% 70%);
+        /* Vendor prefixed clip-path fallback */
+        -webkit-clip-path: ellipse(50% 60% at 50% 70%);
+        clip-path: ellipse(50% 60% at 50% 70%);
   }
 }
