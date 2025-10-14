@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import {
   ChevronRight,
   Download,
@@ -69,20 +69,22 @@ const Header = () => {
                 aria-label={`Navigate to ${item.label} section`}
               >
                 {item.label}
-                <span 
+                <span
                   className="absolute bottom-0 left-3 w-0 bg-black transition-all duration-300 group-hover:w-[calc(100%-1.5rem)] group-active:w-[calc(100%-1.5rem)]"
                   style={{
-                    height: '0.5px',
-                    borderBottom: '0.5px solid black'
+                    height: "0.5px",
+                    borderBottom: "0.5px solid black",
                   }}
                 ></span>
               </a>
             ))}
-            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-black rounded-full flex items-center justify-center ml-4 lg:ml-6 hover:scale-110 transition-transform cursor-pointer">
+            <div 
+              className="w-6 h-6 sm:w-8 sm:h-8 bg-black rounded-full flex items-center justify-center ml-4 lg:ml-6 hover:scale-110 transition-transform cursor-pointer"
+              onClick={() => window.location.href = 'mailto:muskantomar.2511@gmail.com'}
+            >
               <ArrowUpRight color="white" size={16} />
             </div>
           </div>
-
 
           {/* Mobile Menu Button - Improved touch target */}
           <button
@@ -184,7 +186,17 @@ const Hero = () => {
                 <ArrowDownLeft size={12} className="sm:size-4 lg:size-5" />
               </div>
 
-              <button className="mt-8 rounded-lg border-2 border-black bg-transparent px-9 py-2 text-lg font-normal text-black transition-colors duration-300 ease-in-out hover:bg-black hover:text-white">
+              <button
+                className="mt-8 rounded-lg border-2 border-black bg-transparent px-9 py-2 text-lg font-normal text-black transition-colors duration-300 ease-in-out hover:bg-black hover:text-white"
+                onClick={() => {
+                  const el = document.getElementById("contact");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  } else {
+                    window.location.hash = "#contact";
+                  }
+                }}
+              >
                 Let's Start a Project Together
               </button>
             </div>
@@ -207,8 +219,10 @@ const Hero = () => {
                 alt="Muskan Frame 6"
                 className="absolute w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] lg:w-[220px] lg:h-[220px] object-cover z-30 -translate-x-1 sm:-translate-x-3 lg:-translate-x-8 -top-10 sm:-top-16 lg:-top-16"
                 style={{
-                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)'
+                  maskImage:
+                    "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
                 }}
               />
 
@@ -337,7 +351,17 @@ const About = () => {
               </span>
               .
             </p>
-            <button className="bg-transparent border-2 border-black text-black px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-lg sm:text-xl font-medium hover:bg-black hover:text-white transition-colors duration-300 self-center">
+            <button
+              className=" bg-transparent border-2 border-black text-black px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-lg sm:text-xl font-medium hover:bg-black hover:text-white transition-colors duration-300 self-center"
+              onClick={() => {
+                const el = document.getElementById("work");
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth", block: "start" });
+                } else {
+                  window.location.hash = "#work";
+                }
+              }}
+            >
               View My Projects
             </button>
           </div>
@@ -442,7 +466,9 @@ const Services = () => {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl lg:text-5xl font-light text-black mb-4 sm:mb-0">
             The Services we Offer{" "}
-            <span className="text-lg sm:text-xl relative -top-4 sm:-top-7 -left-3">©</span>
+            <span className="text-lg sm:text-xl relative -top-4 sm:-top-7 -left-3">
+              ©
+            </span>
           </h2>
           <div className="hidden md:flex items-center space-x-4 text-2xl font-light cursor-pointer hover:opacity-70 transition-opacity">
             <span className="text-black">View All</span>
@@ -478,7 +504,7 @@ const Services = () => {
         {/* View All Services Button */}
         <div className="text-center relative top-16">
           <button className="bg-transparent border-2 border-black text-black px-5 py-2 rounded-lg text-xl font-medium hover:bg-black hover:text-white transition-all duration-300">
-            View All Services
+            <a href="#work">View All Services</a>
           </button>
         </div>
       </div>
@@ -492,52 +518,48 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "Apptivo",
+      title: "LikeCilento",
       description:
-        "Apptivo CRM's website presents a unified, customizable platform with intuitive design, enterprise features, and seamless integrations—empowering businesses to manage leads, workflows, and customer relationships efficiently",
+        "Discover Cilento through the eyes of those who live it! LikeCilento is the social network dedicated to local tourism in the Cilento region. Freely share your experiences, follow other users, explore nearby places, and discover new destinations through the photos and stories of the community.",
       images: [
-        "/assets/projects/apptivo1.png",
-        "/assets/projects/apptivo4.png",
-        "/assets/projects/apptivo3.png",
-        "/assets/projects/apptivo2.png",
-        "/assets/projects/apptivo5.png",
+        "/assets/projects/cilento1.webp",
+        "/assets/projects/cilento2.webp",
+        "/assets/projects/cilento3.webp",
       ],
+      link: "https://play.google.com/store/apps/details?id=com.ipalinuro&pli=1",
     },
     {
-      title: "Freecrm",
+      title: "North East - PMC",
       description:
-        "FREECRM offers powerful, free CRM tools for sales, marketing, and support—boosting productivity, lead conversion, and customer satisfaction with intuitive dashboards, automation, and mobile access",
+        "A comprehensive project management consultancy app designed to streamline project planning, task management, and resource allocation. It enables efficient tracking of progress, attendance, and daily reports with visual scheduling tools. Simplify operations and boost productivity through real-time insights and automation.",
       images: [
-        "/assets/projects/freecrm1.png",
-        "/assets/projects/freecrm2.png",
-        "/assets/projects/freecrm3.png",
-        "/assets/projects/freecrm4.png",
-        "/assets/projects/freecrm5.png",
+        "/assets/projects/PMC1.webp",
+        "/assets/projects/PMC2.webp",
+        "/assets/projects/PMC3.webp",
       ],
+      link: "https://play.google.com/store/apps/details?id=com.northeastpmc",
     },
     {
-      title: "Pipedrive",
+      title: "Voirmed",
       description:
-        "Pipedrive's website showcases a powerful, AI-driven CRM platform that streamlines sales pipelines, automates workflows, and boosts conversions with intuitive design, real-time insights, and smart integrations",
+        "Voirmed is a modern online learning platform created for medical and paramedical students to learn anytime, anywhere. It offers expert-led video lessons, flexible self-paced study, and high-quality digital resources. Empowering future healthcare professionals through accessible, engaging, and world-class medical education.",
       images: [
-        "/assets/projects/pipedrive1.png",
-        "/assets/projects/pipedrive2.png",
-        "/assets/projects/pipedrive3.png",
-        "/assets/projects/pipedrive4.png",
-        "/assets/projects/pipedrive5.png",
+        "/assets/projects/voir1.webp",
+        "/assets/projects/voir2.webp",
+        "/assets/projects/voir3.webp",
       ],
+      link: "https://play.google.com/store/apps/details?id=com.voirmed",
     },
     {
-      title: "Timbuk Toys",
+      title: "DortiBox",
       description:
-        "Timbuk Toys' website showcases a vibrant, community-focused toy store offering curated brands, playful experiences, and free gift wrapping—celebrating learning through play for all ages",
+        "DortiBox is a smart waste management solution transforming how Freetown handles waste through real-time tracking and data-driven insights.Empowering cleaner cities with efficient, sustainable, and technology-driven waste collection.",
       images: [
-        "/assets/projects/toys1.png",
-        "/assets/projects/toys2.png",
-        "/assets/projects/toys3.png",
-        "/assets/projects/toys4.png",
-        "/assets/projects/toys5.png",
+        "/assets/projects/dort1.webp",
+        "/assets/projects/dort2.webp",
+        "/assets/projects/dort3.webp",
       ],
+      link: "https://apps.apple.com/in/app/dortibox/id1638703010",
       hidden: true,
     },
   ];
@@ -552,7 +574,9 @@ const Portfolio = () => {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl lg:text-5xl font-light text-black mb-4 sm:mb-0">
             Portfolio Projects{" "}
-            <span className="text-lg sm:text-xl relative -top-4 sm:-top-7 -left-3">©</span>
+            <span className="text-lg sm:text-xl relative -top-4 sm:-top-7 -left-3">
+              ©
+            </span>
           </h2>
           <div className="hidden md:flex items-center space-x-4 text-xl lg:text-2xl font-light cursor-pointer hover:opacity-70 transition-opacity">
             <span>View All</span>
@@ -582,7 +606,9 @@ const Portfolio = () => {
               <div className="text-left mb-6 sm:mb-8">
                 <h3 className="text-2xl sm:text-3xl lg:text-5xl font-light text-black mb-4">
                   {project.title}{" "}
-                  <span className="text-lg sm:text-xl relative -top-4 sm:-top-7 -left-3">©</span>
+                  <span className="text-lg sm:text-xl relative -top-4 sm:-top-7 -left-3">
+                    ©
+                  </span>
                 </h3>
               </div>
 
@@ -591,7 +617,11 @@ const Portfolio = () => {
                 {/* Mac mockup background */}
                 <div
                   className={`absolute w-48 h-48 sm:w-72 sm:h-72 lg:w-[600px] lg:h-[600px] opacity-4 sm:opacity-10
-                    ${index % 2 === 0 ? "left-0 -top-8 sm:-top-16" : "right-0 -top-8 sm:-top-16"} 
+                    ${
+                      index % 2 === 0
+                        ? "left-0 -top-8 sm:-top-16"
+                        : "right-0 -top-8 sm:-top-16"
+                    } 
                     transform rotate-12`}
                 >
                   {/* Mac outline SVG */}
@@ -1182,58 +1212,22 @@ const Portfolio = () => {
                     }
 
                     // Special positioning for toys5.png (fifth image in Timbuk Toys project)
-                    if (
-                      imgIndex === 4 &&
-                      image.includes("toys5.png") &&
-                      project.title === "Timbuk Toys"
-                    ) {
-                      return (
-                        <div
-                          key={imgIndex}
-                          className="absolute bg-white shadow-lg overflow-hidden"
-                          style={{
-                            width: "280px",
-                            height: "151px",
-                            top: "260px",
-                            left: "361px",
-                            transform: "rotate(0deg)",
-                            opacity: 1,
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <img
-                            src={image}
-                            alt={`${project.title} screenshot ${imgIndex + 1}`}
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                              e.target.style.display = "none";
-                              e.target.nextSibling.style.display = "flex";
-                            }}
-                          />
-                          <div
-                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
-                            style={{ display: "none" }}
-                          >
-                            Screenshot {imgIndex + 1}
-                          </div>
-                        </div>
-                      );
-                    }
-
-                    // Special positioning for apptivo1.png (first image)
-                    if (imgIndex === 0 && image.includes("apptivo1.png")) {
+                    
+                    // Special positioning for cilento1.webp (first image)
+                   if (imgIndex === 0 && image.includes("cilento1.webp")) {
                       return (
                         <div
                           key={imgIndex}
                           className="absolute overflow-hidden"
                           style={{
-                            width: "550px",
-                            height: "550px",
-                            top: "-15px",
-                            left: "12px",
-                            transform: "rotate(15.15deg)",
+                            width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "140px",
+                            transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
+                            borderRadius: "10px",
                           }}
                         >
                           <img
@@ -1255,20 +1249,21 @@ const Portfolio = () => {
                       );
                     }
 
-                    // Special positioning for apptivo4.png (second image)
-                    if (imgIndex === 1 && image.includes("apptivo4.png")) {
+                    // Special positioning for cilento2.webp (second image)
+                    if (imgIndex === 1 && image.includes("cilento2.webp")) {
                       return (
                         <div
                           key={imgIndex}
                           className="absolute bg-white shadow-lg overflow-hidden"
                           style={{
-                            width: "280px",
-                            height: "151px",
-                            top: "265px",
-                            left: "540px",
+                           width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "460px",
                             transform: "rotate(0deg)",
                             opacity: 1,
-                            borderRadius: "5px",
+                            zIndex: 1,
+                            borderRadius: "10px",
                           }}
                         >
                           <img
@@ -1290,20 +1285,21 @@ const Portfolio = () => {
                       );
                     }
 
-                    // Special positioning for apptivo3.png (third image)
-                    if (imgIndex === 2 && image.includes("apptivo3.png")) {
+                    // Special positioning for cilento3.webp (third image)
+                    if (imgIndex === 2 && image.includes("cilento3.webp")) {
                       return (
                         <div
                           key={imgIndex}
                           className="absolute bg-white shadow-lg overflow-hidden"
                           style={{
-                            width: "280px",
-                            height: "151px",
-                            top: "90px",
-                            left: "540px",
+                            width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "790px",
                             transform: "rotate(0deg)",
                             opacity: 1,
-                            borderRadius: "5px",
+                            zIndex: 1,
+                            borderRadius: "10px",
                           }}
                         >
                           <img
@@ -1325,20 +1321,21 @@ const Portfolio = () => {
                       );
                     }
 
-                    // Special positioning for apptivo2.png (fourth image)
-                    if (imgIndex === 3 && image.includes("apptivo2.png")) {
+                    // Special positioning for PMC1.webp (first image)
+                    if (imgIndex === 0 && image.includes("PMC1.webp")) {
                       return (
                         <div
                           key={imgIndex}
-                          className="absolute bg-white shadow-lg overflow-hidden"
+                          className="absolute overflow-hidden"
                           style={{
-                            width: "280px",
-                            height: "151px",
-                            top: "150px",
-                            left: "840px",
+                            width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "140px",
                             transform: "rotate(0deg)",
                             opacity: 1,
-                            borderRadius: "5px",
+                            zIndex: 1,
+                            borderRadius: "10px",
                           }}
                         >
                           <img
@@ -1360,20 +1357,21 @@ const Portfolio = () => {
                       );
                     }
 
-                    // Special positioning for apptivo5.png (fifth image)
-                    if (imgIndex === 4 && image.includes("apptivo5.png")) {
+                    // Special positioning for PMC2.webp (second image)
+                    if (imgIndex === 1 && image.includes("PMC2.webp")) {
                       return (
                         <div
                           key={imgIndex}
                           className="absolute bg-white shadow-lg overflow-hidden"
                           style={{
-                            width: "280px",
-                            height: "151px",
-                            top: "325px",
-                            left: "840px",
+                            width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "460px",
                             transform: "rotate(0deg)",
                             opacity: 1,
-                            borderRadius: "5px",
+                            zIndex: 1,
+                            borderRadius: "10px",
                           }}
                         >
                           <img
@@ -1395,6 +1393,261 @@ const Portfolio = () => {
                       );
                     }
 
+                    // Special positioning for PMC3.webp (third image)
+                    if (imgIndex === 2 && image.includes("PMC3.webp")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "790px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            zIndex: 1,
+                            borderRadius: "10px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for voir1.webp (first image)
+                    if (imgIndex === 0 && image.includes("voir1.webp")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute overflow-hidden"
+                          style={{
+                            width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "140px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            zIndex: 1,
+                            borderRadius: "10px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for voir2.webp (second image)
+                    if (imgIndex === 1 && image.includes("voir2.webp")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "460px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            zIndex: 1,
+                            borderRadius: "10px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for voir3.webp (third image)
+                    if (imgIndex === 2 && image.includes("voir3.webp")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "790px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            zIndex: 1,
+                            borderRadius: "10px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for dort1.webp (first image)
+                    if (imgIndex === 0 && image.includes("dort1.webp")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute overflow-hidden"
+                          style={{
+                            width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "140px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            zIndex: 1,
+                            borderRadius: "10px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for dort2.webp (second image)
+                    if (imgIndex === 1 && image.includes("dort2.webp")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "460px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            zIndex: 1,
+                            borderRadius: "10px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Special positioning for dort3.webp (third image)
+                    if (imgIndex === 2 && image.includes("dort3.webp")) {
+                      return (
+                        <div
+                          key={imgIndex}
+                          className="absolute bg-white shadow-lg overflow-hidden"
+                          style={{
+                            width: "220px",
+                            height: "450px",
+                            top: "25px",
+                            left: "790px",
+                            transform: "rotate(0deg)",
+                            opacity: 1,
+                            zIndex: 1,
+                            borderRadius: "10px",
+                          }}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextSibling.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="w-full h-full bg-gray-200 items-center justify-center text-xs text-gray-500"
+                            style={{ display: "none" }}
+                          >
+                            Screenshot {imgIndex + 1}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    
+
+                    
                     // Grid positioning for other images
                     const gridPositions = [
                       { top: "40px", right: "40px" },
@@ -1445,9 +1698,20 @@ const Portfolio = () => {
 
               {/* Visit Site Button */}
               <div className="text-center">
-                <button className="bg-transparent border-2 border-black text-black px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg text-base sm:text-lg lg:text-xl font-medium hover:bg-black hover:text-white transition-all duration-300">
-                  Visit Site
-                </button>
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-transparent border-2 border-black text-black px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg text-base sm:text-lg lg:text-xl font-medium hover:bg-black hover:text-white transition-all duration-300"
+                  >
+                    Visit Site
+                  </a>
+                ) : (
+                  <button className="bg-transparent border-2 border-black text-black px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg text-base sm:text-lg lg:text-xl font-medium hover:bg-black hover:text-white transition-all duration-300">
+                    Visit Site
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -1457,7 +1721,9 @@ const Portfolio = () => {
         <div className="text-center mt-12 sm:mt-16">
           <p className="text-xl sm:text-2xl lg:text-5xl font-light text-black mb-6 sm:mb-8 text-left px-2">
             Curious about more designs? Load more projects.{" "}
-            <span className="text-base sm:text-lg lg:text-xl relative -top-3 sm:-top-4 lg:-top-8 right-2 sm:right-4">©</span>
+            <span className="text-base sm:text-lg lg:text-xl relative -top-3 sm:-top-4 lg:-top-8 right-2 sm:right-4">
+              ©
+            </span>
           </p>
           <button
             onClick={() => setShowMore(!showMore)}
@@ -1478,26 +1744,30 @@ const Contact = () => {
     email: "",
     message: "",
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('');
+  const [submitStatus, setSubmitStatus] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validate form
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      alert('Please fill in all fields');
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    ) {
+      alert("Please fill in all fields");
       return;
     }
-    
+
     setIsSubmitting(true);
-    setSubmitStatus('');
+    setSubmitStatus("");
 
     try {
       // Initialize EmailJS first
-      emailjs.init('-UuRv-reuumlrvR05');
-      
+      emailjs.init("-UuRv-reuumlrvR05");
+
       // Simple template parameters matching standard EmailJS template
       const templateParams = {
         user_name: formData.name,
@@ -1505,37 +1775,37 @@ const Contact = () => {
         message: formData.message,
       };
 
-      console.log('Attempting to send email...');
-      console.log('Template params:', templateParams);
-      
+      console.log("Attempting to send email...");
+      console.log("Template params:", templateParams);
+
       // Send email using sendForm method which is more reliable
       const result = await emailjs.send(
-        'service_grn9yuf', // service_id
-        'template_uom4obj', // template_id
+        "service_grn9yuf", // service_id
+        "template_uom4obj", // template_id
         templateParams
       );
-      
-      console.log('EmailJS Success:', result);
-      setSubmitStatus('success');
+
+      console.log("EmailJS Success:", result);
+      setSubmitStatus("success");
       alert("Thank you for your message! I will get back to you soon.");
       setFormData({ name: "", email: "", message: "" });
-      
     } catch (error) {
-      console.error('EmailJS Full Error:', error);
-      setSubmitStatus('error');
-      
-      let errorMessage = 'Failed to send message. ';
-      
+      console.error("EmailJS Full Error:", error);
+      setSubmitStatus("error");
+
+      let errorMessage = "Failed to send message. ";
+
       if (error.status === 400) {
-        errorMessage += 'Please check if your EmailJS service and template are correctly configured.';
+        errorMessage +=
+          "Please check if your EmailJS service and template are correctly configured.";
       } else if (error.status === 401) {
-        errorMessage += 'Authentication failed. Check your public key.';
+        errorMessage += "Authentication failed. Check your public key.";
       } else if (error.status === 404) {
-        errorMessage += 'Service or template not found.';
+        errorMessage += "Service or template not found.";
       } else {
-        errorMessage += 'Please try again later.';
+        errorMessage += "Please try again later.";
       }
-      
+
       alert(errorMessage);
     } finally {
       setIsSubmitting(false);
@@ -1558,7 +1828,10 @@ const Contact = () => {
             Join Hands in Collaboration
           </h2>
 
-          <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6 max-w-6xl text-black">
+          <form
+            onSubmit={handleSubmit}
+            className="grid md:grid-cols-2 gap-6 max-w-6xl text-black"
+          >
             <input
               type="text"
               name="name"
@@ -1590,12 +1863,17 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`absolute bottom-6 right-6 w-8 h-8 flex items-center justify-center transform rotate-2 hover:bg-black hover:scale-110 rounded-full transition-all duration-300 group ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`absolute bottom-6 right-6 w-8 h-8 flex items-center justify-center transform rotate-2 hover:bg-black hover:scale-110 rounded-full transition-all duration-300 group ${
+                  isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               >
                 {isSubmitting ? (
                   <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
                 ) : (
-                  <Send size={20} className="text-black group-hover:text-white" />
+                  <Send
+                    size={20}
+                    className="text-black group-hover:text-white"
+                  />
                 )}
               </button>
             </div>
@@ -1633,7 +1911,9 @@ const Footer = () => {
           {/* Phone */}
           <div className="flex-0  text-left">
             <h3 className="text-2xl font-medium text-black mb-4">Phone</h3>
-            <p className="flex-0 text-xl font-light text-gray-600">(+91) 9999999999</p>
+            <p className="flex-0 text-xl font-light text-gray-600">
+              (+91) 7806000367
+            </p>
           </div>
 
           {/* Email */}
@@ -1641,7 +1921,9 @@ const Footer = () => {
             <h3 className="text-2xl font-medium text-black text-left mb-4">
               Email
             </h3>
-            <p className="text-xl font-light text-gray-600">info@muskan.com</p>
+            <p className="text-xl font-light text-gray-600">
+              muskantomar.2511@gmail.com
+            </p>
           </div>
 
           {/* Socials */}
@@ -1651,15 +1933,22 @@ const Footer = () => {
             </h3>
             <div className="flex justify-end space-x-4 ">
               {/* Social Icons */}
-              <div className="w-10 h-10 bg-[#FFE8A8] rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all duration-200 cursor-pointer">
+              {/*<div className="w-10 h-10 bg-[#FFE8A8] rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all duration-200 cursor-pointer">
                 <span className="text-sm font-bold">X</span>
-              </div>
+              </div>*/}
               <div className="w-10 h-10 bg-[#FFE8A8] rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all duration-200 cursor-pointer">
-                <span className="text-sm font-bold">in</span>
+                <a
+                  href="https://www.linkedin.com/in/muskan-tomar-9a5b83384/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-[#FFE8A8] rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all duration-200 cursor-pointer"
+                >
+                  <span className="text-sm font-bold">in</span>
+                </a>
               </div>
-              <div className="w-10 h-10 bg-[#FFE8A8] rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all duration-200 cursor-pointer">
+              {/*<div className="w-10 h-10 bg-[#FFE8A8] rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all duration-200 cursor-pointer">
                 <span className="text-sm font-bold">ig</span>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>
