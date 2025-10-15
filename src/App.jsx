@@ -1220,10 +1220,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute overflow-hidden"
                           style={{
-                            width: "220px",
+                            width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "140px",
+                            left: "100px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1256,10 +1256,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute bg-white shadow-lg overflow-hidden"
                           style={{
-                           width: "220px",
+                           width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "460px",
+                            left: "425px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1292,10 +1292,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute bg-white shadow-lg overflow-hidden"
                           style={{
-                            width: "220px",
+                            width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "790px",
+                            left: "750px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1328,10 +1328,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute overflow-hidden"
                           style={{
-                            width: "220px",
+                            width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "140px",
+                            left: "100px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1364,10 +1364,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute bg-white shadow-lg overflow-hidden"
                           style={{
-                            width: "220px",
+                            width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "460px",
+                            left: "425px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1400,10 +1400,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute bg-white shadow-lg overflow-hidden"
                           style={{
-                            width: "220px",
+                            width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "790px",
+                            left: "750px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1436,10 +1436,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute overflow-hidden"
                           style={{
-                            width: "220px",
+                            width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "140px",
+                            left: "100px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1472,10 +1472,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute bg-white shadow-lg overflow-hidden"
                           style={{
-                            width: "220px",
+                            width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "460px",
+                            left: "425px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1508,10 +1508,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute bg-white shadow-lg overflow-hidden"
                           style={{
-                            width: "220px",
+                            width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "790px",
+                            left: "750px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1544,10 +1544,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute overflow-hidden"
                           style={{
-                            width: "220px",
+                            width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "140px",
+                            left: "100px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1580,10 +1580,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute bg-white shadow-lg overflow-hidden"
                           style={{
-                            width: "220px",
+                            width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "460px",
+                            left: "425px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1616,10 +1616,10 @@ const Portfolio = () => {
                           key={imgIndex}
                           className="absolute bg-white shadow-lg overflow-hidden"
                           style={{
-                            width: "220px",
+                            width: "300px",
                             height: "450px",
                             top: "25px",
-                            left: "790px",
+                            left: "750px",
                             transform: "rotate(0deg)",
                             opacity: 1,
                             zIndex: 1,
@@ -1886,10 +1886,15 @@ const Contact = () => {
             Assets
           </h2>
           <div className="flex flex-col md:flex-row gap-6 max-w-6xl">
-            <button className="flex-1 bg-transparent border-2 border-black text-black px-8 py-6 rounded-lg text-2xl lg:text-3xl font-light hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center space-x-4">
+            <a 
+              href="https://drive.google.com/file/d/1lFWIh5BhcOeN0peGjA6df2zsXT36ncVM/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 bg-transparent border-2 border-black text-black px-8 py-6 rounded-lg text-2xl lg:text-3xl font-light hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center space-x-4"
+            >
               <Download size={24} />
               <span>Download Resume</span>
-            </button>
+            </a>
             <button className="flex-1 bg-transparent border-2 border-black text-black px-8 py-6 rounded-lg text-2xl lg:text-3xl font-light hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center space-x-4">
               <Download size={24} />
               <span>Download CV</span>
