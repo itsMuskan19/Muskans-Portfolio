@@ -1895,10 +1895,15 @@ const Contact = () => {
               <Download size={24} />
               <span>Download Resume</span>
             </a>
-            <button className="flex-1 bg-transparent border-2 border-black text-black px-8 py-6 rounded-lg text-2xl lg:text-3xl font-light hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center space-x-4">
+            <a
+              href="https://drive.google.com/file/d/1lFWIh5BhcOeN0peGjA6df2zsXT36ncVM/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 bg-transparent border-2 border-black text-black px-8 py-6 rounded-lg text-2xl lg:text-3xl font-light hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center space-x-4"
+            >
               <Download size={24} />
               <span>Download CV</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
